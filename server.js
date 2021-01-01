@@ -7,15 +7,8 @@ const graphql = require('./app/graphql');
 
 app.use('/graphql', cors(), graphql);
 
-const port = {
-  on(_, fn) {
-    setInterval(() => fn(Math.random()), 1000);
-  }
-};
-
 io.on('connection', (socket) => {
-  port.on("data", (data) => socket.emit("data", data));
-  console.log('a user connected');
+  setInterval(() => socket.emit('data', Math.random()), 1000);
 });
 
 server.listen(process.env.port || 8080);

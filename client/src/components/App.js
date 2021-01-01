@@ -14,9 +14,7 @@ const App = () => {
   const [ history, setHistory ] = useState([]);
   const { loading, error, data } = useQuery(GET_HELLO_WORLD);
 
-  useSocket('data', (data) => {
-    setHistory([...history, data]);
-  });
+  useSocket('data', (data) => setHistory([...history, data]));
 
   if (loading) return "Loading...";
   if (error) return JSON.stringify(error);
@@ -26,7 +24,7 @@ const App = () => {
   return (
     <div>
       <h1>{hello}</h1>
-      <ul>{history.slice(-10, history.length).map((data, i) =><li key={i}>{data}</li>)}</ul>
+      <ul>{history.map((data, i) =><li key={i}>{data}</li>)}</ul>
     </div>
   );
 }
