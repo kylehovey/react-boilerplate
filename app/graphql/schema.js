@@ -3,7 +3,7 @@ const { buildSchema } = require('graphql');
 // This is a no-op tag so I can get GraphQL syntax highlighting
 const gql = ([x])=>x;
 
-module.exports = buildSchema(gql`
+const rawSchema = gql`
   type HelloWorld {
     hello: String
   }
@@ -11,4 +11,10 @@ module.exports = buildSchema(gql`
   type Query {
     helloWorld: HelloWorld
   }
-`);
+
+  type Mutation {
+    sayHello(name: String!): String
+  }
+`;
+
+module.exports = buildSchema(rawSchema);
