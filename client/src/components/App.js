@@ -11,11 +11,13 @@ const GET_HELLO_WORLD = gql`
 const App = () => {
   const [ history, setHistory ] = useState([]);
   const { loading, error, data } = useQuery(GET_HELLO_WORLD);
-  const { socket, subscribe, unsubscribe } = useSocket('data', (data) => {
+
+  useSocket('data', (data) => {
     setHistory([...history, data]);
   });
 
   if (loading) return "Loading...";
+  if (error) return error;
 
   const { hello } = data;
 
