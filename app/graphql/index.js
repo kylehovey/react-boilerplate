@@ -3,8 +3,10 @@ const { graphqlHTTP } = require('express-graphql');
 const schema = require('./schema');
 
 const rootValue = {
-  hello() {
-    return 'Hello World';
+  helloWorld() {
+    return {
+      hello: 'Hello World'
+    };
   }
 };
 

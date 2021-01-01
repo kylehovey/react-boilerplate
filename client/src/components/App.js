@@ -4,7 +4,9 @@ import { useQuery, gql } from '@apollo/client';
 
 const GET_HELLO_WORLD = gql`
   query getHelloWorld {
-    hello
+    helloWorld {
+      hello
+    }
   }
 `;
 
@@ -17,9 +19,9 @@ const App = () => {
   });
 
   if (loading) return "Loading...";
-  if (error) return error;
+  if (error) return JSON.stringify(error);
 
-  const { hello } = data;
+  const { helloWorld: { hello } } = data;
 
   return (
     <div>

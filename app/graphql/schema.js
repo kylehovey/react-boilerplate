@@ -4,7 +4,11 @@ const { buildSchema } = require('graphql');
 const gql = ([x])=>x;
 
 module.exports = buildSchema(gql`
-  type Query {
+  type HelloWorld {
     hello: String
+  }
+
+  type Query {
+    helloWorld: HelloWorld
   }
 `);
