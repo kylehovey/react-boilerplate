@@ -1,32 +1,11 @@
 const app = require('express')();
 const server = require('http').createServer(app);
 const io = require('socket.io')(server);
-
 const cors = require('cors');
 
-const { buildSchema } = require('graphql');
-const { graphqlHTTP } = require('express-graphql');
+const graphql = require('./app/graphql');
 
-// This is a no-op tag so I can get GraphQL syntax highlighting
-const gql = ([x])=>x;
-
-const schema = buildSchema(gql`
-  type Query {
-    hello: String
-  }
-`);
-
-const rootValue = {
-  hello() {
-    return 'Hello World';
-  },
-};
-
-app.use('/graphql', cors(), graphqlHTTP({
-  schema,
-  rootValue,
-  graphiql: true,
-}));
+app.use('/graphql', cors(), graphql);
 
 const port = {
   on(_, fn) {
