@@ -2,6 +2,9 @@ const app = require('express')();
 const server = require('http').createServer(app);
 const io = require('socket.io')(server);
 const cors = require('cors');
+const morgan = require('morgan');
+
+app.use(morgan('combined'));
 
 const graphql = require('./app/graphql');
 
