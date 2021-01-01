@@ -21,15 +21,15 @@ const App = () => {
   const [ history, setHistory ] = useState([]);
 
   const message = (
-    ({ loading, data }) => loading
+    ({ loading, data, error }) => loading || error
       ? null
       : <h1>{data.helloWorld.hello}</h1>
   )(useQuery(GET_HELLO_WORLD));
 
   const [ sayHello, mutationResponse ] = (
-    ([ sayHello, { loading, called, data } ]) => [
+    ([ sayHello, { loading, called, data, error } ]) => [
       sayHello,
-      !called || loading
+      !called || loading || error
         ? null
         : <span>API Response Recieved: {data.sayHello}</span>,
     ]
