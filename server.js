@@ -10,7 +10,9 @@ const apollo = require('./app/graphql');
 const app = express();
 const server = http.createServer(app);
 
-app.use(morgan('tiny'));
+if (process.env.DEVELOPMENT) {
+  app.use(morgan('tiny'));
+}
 
 app.use(express.static(path.join(__dirname, 'client/build')));
 
