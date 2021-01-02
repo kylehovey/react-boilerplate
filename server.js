@@ -9,5 +9,6 @@ app.use('*', cors({ origin: 'http://localhost:3000' }));
 app.use(morgan('combined'));
 
 apollo.applyMiddleware({ app });
+apollo.installSubscriptionHandlers(server);
 
 server.listen(process.env.port || 8080);
