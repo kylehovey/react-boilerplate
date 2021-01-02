@@ -20,32 +20,48 @@ const App = () => {
   const [ name, setName ] = useState('');
   const [ history, setHistory ] = useState([]);
 
-  const message = (
-    ({ loading, data, error }) => loading || error
-      ? null
-      : <h1>{data.helloWorld.hello}</h1>
-  )(useQuery(GET_HELLO_WORLD));
+  const {
+    loading: queryLoading,
+    error: queryError,
+    data: queryData,
+  } = useQuery(GET_HELLO_WORLD);
 
-  const [ sayHello, mutationResponse ] = (
-    ([ sayHello, { loading, called, data, error } ]) => [
-      sayHello,
-      !called || loading || error
-        ? null
-        : <span>API Response Recieved: {data.sayHello}</span>,
-    ]
-  )(useMutation(SAY_HELLO));
+  const [
+    sayHello,
+    {
+      loading: mutationLoading,
+      called: mutationCalled,
+      error: mutationError,
+      data: mutationData,
+    },
+  ] = useMutation(SAY_HELLO);
 
   useSocket('data', (data) => setHistory([...history, data]));
 
+  if (queryLoading) return 'Loading...';
+
+  if (queryError) return JSON.stringify(queryError);
+  if (mutationError) return JSON.stringify(mutationError);
+
+  const {
+    helloWorld: {
+      hello,
+    },
+  } = queryData;
+
+  const apiMessage = (!mutationLoading && mutationCalled) ? (
+    <span>API Response Recieved: {mutationData.sayHello}</span>
+  ) : null;
+
   return (
     <div>
-      {message}
+      <h1>{hello}</h1>
       <input
         value={name}
         onChange={({ target }) => setName(target.value)}
       />
       <button onClick={() => sayHello({ variables: { name } })}>Send</button>
-      {mutationResponse}
+      {apiMessage}
       <ul>{history.map((data, i) =><li key={i}>{data}</li>)}</ul>
     </div>
   );
