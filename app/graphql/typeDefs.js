@@ -5,8 +5,14 @@ const typeDefs = gql`
     hello: String
   }
 
+  type Thing {
+    id: ID!
+    name: String
+  }
+
   type Query {
     helloWorld: HelloWorld
+    things: [Thing]
   }
 
   type Subscription {
@@ -14,7 +20,8 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    sayHello(name: String!): String
+    makeThing(name: String!): Thing
+    deleteThing(id: ID!): Thing
   }
 `;
 

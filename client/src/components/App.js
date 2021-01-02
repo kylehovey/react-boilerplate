@@ -1,6 +1,42 @@
 import React, { useState } from 'react';
 import { useQuery, useSubscription, useMutation, gql } from '@apollo/client';
 
+const GET_INDEX = gql`
+  query GetIndex {
+    helloWorld {
+      hello
+    }
+    things {
+      id
+      name
+    }
+  }
+`;
+
+const MAKE_THING = gql`
+  mutation MakeThing($name: String!) {
+    makeThing(name: $name) {
+      id
+      name
+    }
+  }
+`;
+
+const DELETE_THING = gql`
+  mutation DeleteThing($id: ID!) {
+    deleteThing(id: $id) {
+      id
+      name
+    }
+  }
+`;
+
+const RANDOM_NUMBER = gql`
+  subscription RandomNumber {
+    randomNumber
+  }
+`;
+
 const App = () => {
   const [ name, setName ] = useState('');
   const [ history, setHistory ] = useState([]);
@@ -9,33 +45,27 @@ const App = () => {
     loading: queryLoading,
     error: queryError,
     data: queryData,
-  } = useQuery(gql`
-    query GetHelloWorld {
-      helloWorld {
-        hello
-      }
-    }
-  `);
+  } = useQuery(GET_INDEX);
 
   const [
-    sayHello,
-    {
-      loading: mutationLoading,
-      called: mutationCalled,
-      error: mutationError,
-      data: mutationData,
-    },
-  ] = useMutation(gql`
-    mutation SayHello($name: String!) {
-      sayHello(name: $name)
-    }
-  `);
+    makeThing,
+    { error: createError },
+  ] = useMutation(MAKE_THING, {
+    refetchQueries: [
+      { query: GET_INDEX },
+    ],
+  });
 
-  const { error: subscriptionError } = useSubscription(gql`
-    subscription RandomNumber {
-      randomNumber
-    }
-  `, {
+  const [
+    deleteThing,
+    { error: deleteError },
+  ] = useMutation(DELETE_THING, {
+    refetchQueries: [
+      { query: GET_INDEX },
+    ],
+  });
+
+  const { error: subscriptionError } = useSubscription(RANDOM_NUMBER, {
     onSubscriptionData: ({ subscriptionData }) => {
       const {
         data: {
@@ -48,30 +78,48 @@ const App = () => {
   });
 
   if (queryLoading) return 'Loading...';
-
   if (queryError) return JSON.stringify(queryError);
-  if (mutationError) return JSON.stringify(mutationError);
   if (subscriptionError) return JSON.stringify(subscriptionError);
+
+  if (createError || deleteError) {
+    return JSON.stringify(createError || deleteError);
+  }
 
   const {
     helloWorld: {
       hello,
     },
+    things,
   } = queryData;
-
-  const apiMessage = (!mutationLoading && mutationCalled) ? (
-    <span>API Response Recieved: {mutationData.sayHello}</span>
-  ) : null;
 
   return (
     <div>
       <h1>{hello}</h1>
-      <input
-        value={name}
-        onChange={({ target }) => setName(target.value)}
-      />
-      <button onClick={() => sayHello({ variables: { name } })}>Send</button>
-      {apiMessage}
+      <div>
+        <h2>Create Thing</h2>
+        <input
+          value={name}
+          onChange={({ target }) => setName(target.value)}
+          placeholder="Thing Name"
+        />
+        <button onClick={() => makeThing({ variables: { name } })}>Send</button>
+      </div>
+      <div>
+        <h2>Things:</h2>
+        <ul>
+          {things.map(({ id, name }) => (
+            <li key={id}>
+              {id}: {name}
+              <button
+                onClick={() => deleteThing({ variables: { id } })}
+              >
+                Remove
+              </button>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <h2>Random Numbers:</h2>
       <ul>{history.map((data, i) =><li key={i}>{data}</li>)}</ul>
     </div>
   );
