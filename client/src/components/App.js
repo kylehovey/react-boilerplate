@@ -2,20 +2,6 @@ import React, { useState } from 'react';
 import { useSocket } from 'use-socketio';
 import { useQuery, useMutation, gql } from '@apollo/client';
 
-const GET_HELLO_WORLD = gql`
-  query GetHelloWorld {
-    helloWorld {
-      hello
-    }
-  }
-`;
-
-const SAY_HELLO = gql`
-  mutation SayHello($name: String!) {
-    sayHello(name: $name)
-  }
-`;
-
 const App = () => {
   const [ name, setName ] = useState('');
   const [ history, setHistory ] = useState([]);
@@ -24,7 +10,13 @@ const App = () => {
     loading: queryLoading,
     error: queryError,
     data: queryData,
-  } = useQuery(GET_HELLO_WORLD);
+  } = useQuery(gql`
+    query GetHelloWorld {
+      helloWorld {
+        hello
+      }
+    }
+  `);
 
   const [
     sayHello,
@@ -34,7 +26,11 @@ const App = () => {
       error: mutationError,
       data: mutationData,
     },
-  ] = useMutation(SAY_HELLO);
+  ] = useMutation(gql`
+    mutation SayHello($name: String!) {
+      sayHello(name: $name)
+    }
+  `);
 
   useSocket('data', (data) => setHistory([...history, data]));
 
