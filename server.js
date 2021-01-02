@@ -5,7 +5,12 @@ const express = require('express');
 const http = require('http');
 const morgan = require('morgan');
 
-const apollo = require('./app/graphql');
+const models = require('./app/models');
+const apollo = require('./app/graphql')({
+  context: {
+    models,
+  },
+});
 
 const app = express();
 const server = http.createServer(app);

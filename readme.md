@@ -7,6 +7,7 @@ This is a boilerplate setup for a React app with a Node.js back-end with a pre-c
 * React development server
 * Express back-end
 * Apollo GraphQL server with an example schema set up
+* Sequelize ORM as a PostgreSQL connector supplied as context to Apollo GraphQL
 * GraphQL subscriptions set up and working out-of-the-box
 * [dotenv-flow](https://www.npmjs.com/package/dotenv-flow) for both server and client
 * Script to run back-end with `nodemon` and front-end with `react-scripts` for hot-reloading on both sides
@@ -16,7 +17,7 @@ This is a boilerplate setup for a React app with a Node.js back-end with a pre-c
 
 First, clone this repo and `cd` into the directory. I use the [asdf Version Manager](https://asdf-vm.com/) to manage my runtime environments. Once in the directory, just run `asdf install` to ensure that you have the right runtimes. If you don't use asdf, just check out `.tool-versions` for the runtimes that this project uses.
 
-Then, run `npm run setup` to install dependencies (this is just `npm i` in both dirs, but I added a script to make it easier).
+Then, run `npm run setup` to install dependencies (this is just `npm i` in both dirs, but I added a script to make it easier). Once that finishes, run `npm run dbsetup` to initialize the development database and user.
 
 **(Optional):** Once you have the right runtimes, copy `.env.development` in both the project root and in `client` to a `.env.development.local` for each and put any environment variables you wish to override in the new files.
 
