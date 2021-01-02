@@ -1,4 +1,4 @@
-require('dotenv').config();
+require('dotenv-flow').config();
 
 const path = require('path');
 const express = require('express');
@@ -10,7 +10,7 @@ const apollo = require('./app/graphql');
 const app = express();
 const server = http.createServer(app);
 
-if (process.env.DEVELOPMENT) {
+if (process.env.NODE_ENV === 'development') {
   app.use(morgan('tiny'));
 }
 
