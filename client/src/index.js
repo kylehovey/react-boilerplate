@@ -14,12 +14,16 @@ import './style/index.css';
 
 import App from './components/App';
 
+const { REACT_APP_BACKEND_DOMAIN } = process.env;
+
+const domain = `${REACT_APP_BACKEND_DOMAIN}/graphql`;
+
 const httpLink = new HttpLink({
-  uri: 'http://localhost:8080/graphql'
+  uri: `http://${domain}`,
 });
 
 const wsLink = new WebSocketLink({
-  uri: 'ws://localhost:8080/graphql',
+  uri: `ws://${domain}`,
   options: {
     reconnect: true,
   },
