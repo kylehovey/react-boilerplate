@@ -9,7 +9,7 @@
     "client": "cd client && npm start",
     "build": "cd client && npm run build",
     "setup": "npm i && cd client && npm i",
-    "dbsetup": "./setup.sh"
+    "dbsetup": "./dbsetup.sh"
   },
   "author": "Kyle Hovey",
   "license": "ISC",
