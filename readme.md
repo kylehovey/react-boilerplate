@@ -17,6 +17,7 @@ So far, this project is more-or-less 100% standard, with only the directory stru
 * Apollo GraphQL server with an example schema set up
 * Sequelize ORM as a PostgreSQL connector supplied as context to Apollo GraphQL
 * GraphQL subscriptions set up and working out-of-the-box
+* A publisher model for broadcasting arbitrary events over GraphQL subscriptions
 * [dotenv-flow](https://www.npmjs.com/package/dotenv-flow) for both server and client
 * Script to run back-end with `nodemon` and front-end with `react-scripts` for hot-reloading on both sides
 * One simple script to compile a production client build and serve it from express
