@@ -1,24 +1,8 @@
-const { graphqlHTTP } = require('express-graphql');
+const { graphqlExpress, graphiqlExpress } = require('graphql-server-express');
 
-const schema = require('./schema');
+const { schema } = require('./schema');
 
-const rootValue = {
-  helloWorld() {
-    return {
-      hello: 'Hello World'
-    };
-  },
+const graphql = graphqlExpress({ schema });
+const graphiql = graphiqlExpress({ endpointURL: '/graphql' });
 
-  sayHello({ name }) {
-    const message = `Hello from ${name}!`;
-    console.log(message);
-
-    return message;
-  },
-};
-
-module.exports = graphqlHTTP({
-  schema,
-  rootValue,
-  graphiql: true,
-});
+module.exports = { graphql, graphiql };

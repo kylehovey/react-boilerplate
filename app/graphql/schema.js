@@ -1,9 +1,10 @@
-const { buildSchema } = require('graphql');
+const { makeExecutableSchema } = require('graphql-tools');
+const { resolvers } = require('./resolvers');
 
 // This is a no-op tag so I can get GraphQL syntax highlighting
 const gql = ([x])=>x;
 
-const rawSchema = gql`
+const typeDefs = gql`
   type HelloWorld {
     hello: String
   }
@@ -17,4 +18,9 @@ const rawSchema = gql`
   }
 `;
 
-module.exports = buildSchema(rawSchema);
+const schema = makeExecutableSchema({
+  typeDefs,
+  resolvers,
+});
+
+module.exports = { schema };
