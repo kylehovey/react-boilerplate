@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-//import { useSocket } from 'use-socketio';
-import { useQuery, useMutation, gql } from '@apollo/client';
+import { useQuery, useSubscription, useMutation, gql } from '@apollo/client';
 
 const App = () => {
   const [ name, setName ] = useState('');
@@ -32,12 +31,27 @@ const App = () => {
     }
   `);
 
-  //useSocket('data', (data) => setHistory([...history, data]));
+  const { error: subscriptionError } = useSubscription(gql`
+    subscription RandomNumber {
+      randomNumber
+    }
+  `, {
+    onSubscriptionData: ({ subscriptionData }) => {
+      const {
+        data: {
+          randomNumber,
+        },
+      } = subscriptionData;
+
+      setHistory([...history, randomNumber]);
+    },
+  });
 
   if (queryLoading) return 'Loading...';
 
   if (queryError) return JSON.stringify(queryError);
   if (mutationError) return JSON.stringify(mutationError);
+  if (subscriptionError) return JSON.stringify(subscriptionError);
 
   const {
     helloWorld: {
