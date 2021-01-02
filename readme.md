@@ -1,6 +1,14 @@
 # React App Boilerplate
 
-This is a boilerplate setup for a React app with a Node.js back-end with a pre-configured GraphQL API with Websocket subscriptions set up.
+This is a boilerplate setup for a React app with a Node.js back-end with a pre-configured GraphQL API with Websocket subscriptions set up. I am following this mantra:
+
+* Make the setup as simple as possible
+* Make the setup maintainable and flexible for future modifications
+* Choose ones with active maintenance
+* Choose ones with comprehensive documentation
+* Whenever possible, use libraries, not custom toolings
+
+So far, this project is more-or-less 100% standard, with only the directory structure being unique to this project. This repo serves mainly as a starting point so that you don't have to spend hours setting up your React/Express/ORM/API/Websocket stack. This boilerplate is also production-ready.
 
 ## Features
 
