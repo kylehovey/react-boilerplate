@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useSocket } from 'use-socketio';
+//import { useSocket } from 'use-socketio';
 import { useQuery, useMutation, gql } from '@apollo/client';
 
 const App = () => {
@@ -32,7 +32,7 @@ const App = () => {
     }
   `);
 
-  useSocket('data', (data) => setHistory([...history, data]));
+  //useSocket('data', (data) => setHistory([...history, data]));
 
   if (queryLoading) return 'Loading...';
 

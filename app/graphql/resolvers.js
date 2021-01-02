@@ -1,9 +1,22 @@
+const { PubSub } = require('graphql-subscriptions');
+
+const pubsub = new PubSub();
+const RANDOM_NUMBER_TOPIC = 'random_number';
+
+setInterval(() => pubsub.publish(RANDOM_NUMBER_TOPIC, Math.random()), 1000);
+
 const Query = {
   helloWorld(root) {
     return {
       hello: 'Hello World',
     };
   },
+};
+
+const Subscription = {
+  randomNumber() {
+    pubsub.asyncIterator([RANDOM_NUMBER_TOPIC]);
+  }
 };
 
 const Mutation = {
@@ -15,6 +28,6 @@ const Mutation = {
   },
 };
 
-const resolvers = { Query, Mutation };
+const resolvers = { Query, Subscription, Mutation };
 
 module.exports = { resolvers };

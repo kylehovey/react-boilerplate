@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { SocketIOProvider } from 'use-socketio';
+//import { SocketIOProvider } from 'use-socketio';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 
 import './style/index.css';
@@ -14,11 +14,11 @@ const client = new ApolloClient({
 
 ReactDOM.render(
   <React.StrictMode>
-    <SocketIOProvider url="http://localhost:3000">
+    {/*<SocketIOProvider url="http://localhost:3000">*/null}
       <ApolloProvider client={client}>
         <App />
       </ApolloProvider>
-    </SocketIOProvider>
+    {/*</SocketIOProvider>*/null}
   </React.StrictMode>,
   document.getElementById('root')
 );

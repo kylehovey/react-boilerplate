@@ -1,8 +1,12 @@
-const { graphqlExpress, graphiqlExpress } = require('graphql-server-express');
+const { ApolloServer } = require('apollo-server-express');
 
-const { schema } = require('./schema');
+const { typeDefs } = require('./typeDefs');
+const { resolvers } = require('./resolvers');
 
-const graphql = graphqlExpress({ schema });
-const graphiql = graphiqlExpress({ endpointURL: '/graphql' });
-
-module.exports = { graphql, graphiql };
+module.exports = new ApolloServer({
+  typeDefs,
+  resolvers,
+  playground: {
+    endpoint: '/graphql',
+  },
+});
