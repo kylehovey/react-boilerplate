@@ -32,6 +32,22 @@ Then, run `npm run setup` to install dependencies (this is just `npm i` in both 
 
 To run the development stack, run `npm run server` in one tab/pane/terminal and `npm run client` in another. Both will hot-reload whenever you change any files, so no need to restart them unless you change the environment variables.
 
+**TL;DR:**
+
+```bash
+git clone git@github.com:kylehovey/react-boilerplate.git
+cd react-boilerplate
+asdf install
+npm run setup
+npm run dbsetup
+
+# One tab
+npm run server
+
+# Another
+npm run client
+```
+
 ## Managing Live Data Publishing
 
 If you want to broadcast data via GraphQL subscriptions, first create a publisher in `app/subscriptions/publishers` that publishes the information to a `PubSub` topic. Make sure that you add a line in `app/subscriptions/publishers/index.js` that requires your publisher. Then, in the subscription resolver, use the `pubsub` and `topics` in the context to return an async iterator for the topic you want to broadcast. A basic example that broadcasts random numbers every second is already set up.
