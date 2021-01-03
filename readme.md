@@ -26,7 +26,15 @@ So far, this project is more-or-less 100% standard, with only the directory stru
 
 First, clone this repo and `cd` into the directory. I use the [asdf Version Manager](https://asdf-vm.com/) to manage my runtime environments. Once in the directory, just run `asdf install` to ensure that you have the right runtimes. If you don't use asdf, just check out `.tool-versions` for the runtimes that this project uses.
 
+Install the command-line dependencies this project requires:
+
+```bash
+npm i -g sequelize-cli nodemon
+```
+
 Then, run `npm run setup` to install dependencies (this is just `npm i` in both dirs, but I added a script to make it easier). Once that finishes, run `npm run dbsetup` to initialize the development database and user.
+
+Run any migrations to create the schema by running `npm run migrate-dev` and `npm run migrate-prod`.
 
 **(Optional):** Once you have the right runtimes, copy `.env.development` in both the project root and in `client` to a `.env.development.local` for each and put any environment variables you wish to override in the new files.
 
@@ -38,6 +46,7 @@ To run the development stack, run `npm run server` in one tab/pane/terminal and 
 git clone git@github.com:kylehovey/react-boilerplate.git
 cd react-boilerplate
 asdf install
+npm i -g sequelize-cli nodemon
 npm run setup
 npm run dbsetup
 
