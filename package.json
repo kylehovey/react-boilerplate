@@ -12,7 +12,8 @@
     "dbsetup": "./dbsetup.sh",
     "lint": "npx eslint app",
     "migrate-dev": "NODE_ENV=development npx sequelize db:migrate",
-    "migrate-prod": "NODE_ENV=production npx sequelize db:migrate"
+    "migrate-prod": "NODE_ENV=production npx sequelize db:migrate",
+    "test": "cd client && npm run test"
   },
   "author": "Kyle Hovey",
   "license": "ISC",
