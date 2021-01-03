@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useQuery, useSubscription, useMutation, gql } from '@apollo/client';
 
-const GET_INDEX = gql`
+export const GET_INDEX = gql`
   query GetIndex {
     helloWorld {
       hello
@@ -13,7 +13,7 @@ const GET_INDEX = gql`
   }
 `;
 
-const MAKE_THING = gql`
+export const MAKE_THING = gql`
   mutation MakeThing($name: String!) {
     makeThing(name: $name) {
       id
@@ -22,7 +22,7 @@ const MAKE_THING = gql`
   }
 `;
 
-const DELETE_THING = gql`
+export const DELETE_THING = gql`
   mutation DeleteThing($id: ID!) {
     deleteThing(id: $id) {
       id
@@ -31,7 +31,7 @@ const DELETE_THING = gql`
   }
 `;
 
-const RANDOM_NUMBER = gql`
+export const RANDOM_NUMBER = gql`
   subscription RandomNumber {
     randomNumber
   }
