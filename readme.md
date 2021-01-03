@@ -40,6 +40,11 @@ If you want to broadcast data via GraphQL subscriptions, first create a publishe
 
 * Client: `npm run test`
 
+## Linter
+
+* Server: `npm run lint`
+* Client: (built into `npm run client`)
+
 ## Production
 
 Make sure you have configured your production environment in both `.env.production.local` and `client/.env.production.local` (you will have to create these), then just run `npm run production` to compile a production build and run the full stack. Note that you won't have to run the React dev server anymore since the static bundle built by the React stack will be served statically from the same express server that runs the GraphQL endpoint.

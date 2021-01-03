@@ -1,15 +1,15 @@
 const Query = {
-  helloWorld(root, variables, context) {
+  helloWorld() {
     return {
       hello: 'Hello World',
     };
   },
 
-  things(root, variables, context) {
+  things(root, _variables, context) {
     const { models } = context;
 
     return models.Things.findAll();
-  }
+  },
 };
 
 module.exports = { Query };

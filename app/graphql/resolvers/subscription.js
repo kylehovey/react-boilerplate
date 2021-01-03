@@ -4,7 +4,7 @@ const Subscription = {
       const { pubsub, topics } = context;
 
       return pubsub.asyncIterator([topics.RANDOM_NUMBER_TOPIC]);
-    }
+    },
   },
 };
 

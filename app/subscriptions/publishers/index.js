@@ -1,1 +1,1 @@
-require('./random_number')
+require('./random_number');

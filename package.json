@@ -9,7 +9,8 @@
     "client": "cd client && npm start",
     "build": "cd client && npm run build",
     "setup": "npm i && cd client && npm i",
-    "dbsetup": "./dbsetup.sh"
+    "dbsetup": "./dbsetup.sh",
+    "lint": "npx eslint app"
   },
   "author": "Kyle Hovey",
   "license": "ISC",
@@ -17,10 +18,16 @@
     "apollo-server": "^2.19.1",
     "apollo-server-express": "^2.19.1",
     "dotenv-flow": "^3.2.0",
-    "graphql": "^15.4.0",
+    "express": "^4.17.1",
+    "graphql": "^14.0.0",
+    "graphql-subscriptions": "^1.1.0",
     "morgan": "^1.10.0",
     "pg": "^8.5.1",
     "pg-hstore": "^2.3.3",
     "sequelize": "^6.3.5"
+  },
+  "devDependencies": {
+    "eslint": "^7.17.0",
+    "eslint-config-airbnb-base": "^14.2.1"
   }
 }

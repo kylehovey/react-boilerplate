@@ -1,4 +1,4 @@
-const { pubsub, topics } = require('../');
+const { pubsub, topics } = require('..');
 
 setInterval(() => {
   pubsub.publish(
