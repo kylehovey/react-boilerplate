@@ -4,6 +4,7 @@ const path = require('path');
 const express = require('express');
 const http = require('http');
 const morgan = require('morgan');
+const helmet = require('helmet');
 
 const { pubsub, topics } = require('./subscriptions');
 const models = require('./models');
@@ -17,6 +18,8 @@ const apollo = require('./graphql')({
 
 const app = express();
 const server = http.createServer(app);
+
+app.use(helmet());
 
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('tiny'));
