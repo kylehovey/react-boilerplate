@@ -39,6 +39,7 @@ If you want to broadcast data via GraphQL subscriptions, first create a publishe
 ## Testing
 
 * Client: `npm run test`
+* Server: (not implemented)
 
 ## Linter
 
