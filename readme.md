@@ -1,5 +1,7 @@
 # React App Boilerplate
 
+![Node.js CI](https://github.com/kylehovey/react-boilerplate/workflows/Node.js%20CI/badge.svg)
+
 This is a boilerplate setup for a React app with a Node.js back-end with a pre-configured GraphQL API with Websocket subscriptions set up. I am following this mantra:
 
 * Make the setup as simple as possible
