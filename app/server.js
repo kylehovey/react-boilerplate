@@ -5,9 +5,9 @@ const express = require('express');
 const http = require('http');
 const morgan = require('morgan');
 
-const { pubsub, topics } = require('./app/subscriptions');
-const models = require('./app/models');
-const apollo = require('./app/graphql')({
+const { pubsub, topics } = require('./subscriptions');
+const models = require('./models');
+const apollo = require('./graphql')({
   context: {
     models,
     pubsub,

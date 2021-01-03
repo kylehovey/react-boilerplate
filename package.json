@@ -2,9 +2,9 @@
   "name": "react-boilerplate-server",
   "version": "0.1.0",
   "description": "",
-  "main": "server.js",
+  "main": "app/server.js",
   "scripts": {
-    "server": "NODE_ENV=development nodemon server.js",
+    "server": "NODE_ENV=development nodemon app/server.js",
     "production": "npm run build && NODE_ENV=production node server.js",
     "client": "cd client && npm start",
     "build": "cd client && npm run build",
