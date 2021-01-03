@@ -22,7 +22,7 @@ if (process.env.NODE_ENV === 'development') {
   app.use(morgan('tiny'));
 }
 
-app.use(express.static(path.join(__dirname, 'client/build')));
+app.use(express.static(path.join(__dirname, '../client/build')));
 
 apollo.applyMiddleware({ app });
 apollo.installSubscriptionHandlers(server);

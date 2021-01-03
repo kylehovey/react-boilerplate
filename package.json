@@ -5,7 +5,7 @@
   "main": "app/server.js",
   "scripts": {
     "server": "NODE_ENV=development nodemon app/server.js",
-    "production": "npm run build && NODE_ENV=production node server.js",
+    "production": "npm run build && NODE_ENV=production node app/server.js",
     "client": "cd client && npm start",
     "build": "cd client && npm run build",
     "setup": "npm i && cd client && npm i",
